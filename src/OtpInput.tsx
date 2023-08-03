@@ -1,16 +1,15 @@
-import React, { forwardRef, RefObject, useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import {
   NativeSyntheticEvent,
   Platform,
   StyleProp,
-  TextInput,
   TextInputKeyPressEventData,
   TextInputProps,
   TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
-
+import { TextInput } from 'react-native-paper';
 type Props = TextInputProps & {
   inputContainerStyles?: StyleProp<ViewStyle>;
   firstInput: boolean;
@@ -25,7 +24,7 @@ type Props = TextInputProps & {
 const majorVersionIOS: number = parseInt(`${Platform.Version}`, 10);
 const isOTPSupported: boolean = Platform.OS === 'ios' && majorVersionIOS >= 12;
 
-const OtpInput = forwardRef<TextInput, Props>(
+const OtpInput = forwardRef<typeof TextInput, Props>(
   (
     {
       autoFocus,
@@ -45,7 +44,7 @@ const OtpInput = forwardRef<TextInput, Props>(
     const [focused, setFocused] = useState(false);
 
     useEffect(() => {
-      (ref as RefObject<TextInput>)?.current?.setNativeProps({
+      (ref as any)?.current?.setNativeProps({
         value: inputValue,
         text: inputValue,
         secureTextEntry,

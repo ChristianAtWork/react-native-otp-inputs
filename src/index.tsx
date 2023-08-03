@@ -14,14 +14,12 @@ import {
   Platform,
   StyleProp,
   StyleSheet,
-  TextInput,
   TextInputKeyPressEventData,
   TextInputProps,
   TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
-
 import { fillOtpCode } from './helpers';
 import OtpInput from './OtpInput';
 import reducer from './reducer';
@@ -80,7 +78,7 @@ const OtpInputs = forwardRef<OtpInputsRef, Props>(
     ref,
   ) => {
     const previousCopiedText = useRef<string>('');
-    const inputs = useRef<Array<RefObject<TextInput>>>([]);
+    const inputs = useRef<Array<RefObject<any>>>([]);
     const [{ otpCode, hasKeySupport }, dispatch] = useReducer(reducer, {}, () => ({
       otpCode: fillOtpCode(numberOfInputs, defaultValue),
       handleChange,
